@@ -1,0 +1,25 @@
+{
+  "author": "Jake Luer <jake@alogicalparadox.com>",
+  "name": "carbon",
+  "description": "Multi-transport proxy",
+  "version": "0.0.0",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/logicalparadox/carbon.git"
+  },
+  "main": "./index",
+  "scripts": {
+    "test": "make test"
+  },
+  "engines": {
+    "node": "~0.6.7"
+  },
+  "dependencies": {
+    "drip": "0.2.x",
+    "tea": "0.0.x"
+  },
+  "devDependencies": {
+    "mocha" : "*",
+    "chai": "*"
+  }
+}
