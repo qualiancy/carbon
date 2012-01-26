@@ -20,10 +20,7 @@ describe('Carbon#Stack', function () {
   });
 
   it('should throw an error if no server provided' , function () {
-    function newServer () {
-      var s = new carbon.Stack();
-      return s;
-    }
-    should.throw(newServer, Error);
+    var f = function () { return new carbon.Stack; };
+    should.throw(f, Error);
   });
 });
