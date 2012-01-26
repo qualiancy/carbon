@@ -8,15 +8,19 @@
     "url": "git://github.com/logicalparadox/carbon.git"
   },
   "main": "./index",
+  "bin": {
+    "carbon": "./bin/carbon"
+  },
   "scripts": {
     "test": "make test"
   },
   "engines": {
-    "node": "~0.6.7"
+    "node": ">= 0.6.x"
   },
   "dependencies": {
     "drip": "0.2.x",
-    "tea": "0.0.x"
+    "tea": "0.0.x",
+    "optimist": "0.3.x"
   },
   "devDependencies": {
     "superagent": "0.3.x",

@@ -1,0 +1,72 @@
+#! /usr/bin/env node
+
+var drip = require('drip')
+  , fs = require('fs')
+  , join = require('path').join
+  , tea = require('tea')
+  , carbon = require('..');
+
+var log = new tea.Logger({
+    namespace: 'carbon'
+  , levels: 'syslog'
+  , transports: [ 'console' ]
+});
+
+var cli = new drip({
+    wildcard: true
+  , delimter: ' '
+});
+
+cli.on('--help', function () {
+  console.log('help');
+});
+
+cli.on('--version', function () {
+  console.log(carbon.version);
+});
+
+cli.on('start', function (args) {
+  var port = args.p || args.port
+    , host = args.h || args.host
+    , address = (host) ? host + ':' + port : port
+    , _file = args.f || args.file;
+
+  if (!port)
+    return log.error('Can\'t start without a port.');
+
+  if (!_file)
+    return log.error('Can\'t start without a file.');
+
+  var _routes = fs.readFileSync(_file, 'utf8');
+  try {
+    _routes = JSON.parse(_routes);
+  } catch (ex) {
+    log.error('Unable to parse json routes file.');
+    process.exit(1);
+  }
+
+  var routes = Object.create(null);
+  _routes.forEach(function (r) {
+    routes[r.hostname] = r.port;
+  });
+
+  log.info('Carbon proxy starting on [' + address + ']');
+  var proxy = carbon.listen(address, { logger: log });
+
+  proxy.use(function (req, res, next) {
+    log.debug('request for ' + req.headers.host);
+    var go = routes[req.headers.host];
+    if (go) next(go);
+    else next();
+  });
+});
+
+var args = require('optimist').argv
+  , command = args._.slice(0);
+
+if (command.length == 0) {
+  if (args.v || args.version) command.push('--version');
+  else if (args.h || args.help) command.push('--help');
+}
+
+cli.emit(command, args);
