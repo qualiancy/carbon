@@ -1,7 +1,7 @@
 {
   "author": "Jake Luer <jake@alogicalparadox.com>",
   "name": "carbon",
-  "description": "Multi-transport proxy",
+  "description": "Little proxy.",
   "version": "0.0.0",
   "repository": {
     "type": "git",
@@ -19,6 +19,7 @@
     "tea": "0.0.x"
   },
   "devDependencies": {
+    "superagent": "0.3.x",
     "mocha" : "*",
     "chai": "*"
   }
