@@ -1,0 +1,10 @@
+[
+  {
+    "hostname": "qualiancy.com",
+    "port": 8000
+  },
+  {
+    "hostname": "alogicalparadox.com",
+    "port": 1227
+  }
+]
