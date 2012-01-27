@@ -1,4 +1,10 @@
 
+0.0.2 / 2012-01-27 
+==================
+
+  * remove debug messages for now
+  * added example routefile
+
 0.0.1 / 2012-01-26 
 ==================
 
