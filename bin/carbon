@@ -54,7 +54,6 @@ cli.on('start', function (args) {
   var proxy = carbon.listen(address, { logger: log });
 
   proxy.use(function (req, res, next) {
-    log.debug('request for ' + req.headers.host);
     var go = routes[req.headers.host];
     if (go) next(go);
     else next();
