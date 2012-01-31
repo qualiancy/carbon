@@ -24,10 +24,6 @@ function after(n, fn) {
 
 describe('Carbon#Stack', function () {
 
-  it('should have a valid version', function () {
-    carbon.version.should.match(/^\d+\.\d+\.\d$/);
-  });
-
   it('should be an event emitter', function (done) {
     var h = http.createServer().listen(6789)
       , s = new carbon.Stack(h);

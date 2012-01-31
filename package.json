@@ -24,6 +24,7 @@
   },
   "devDependencies": {
     "superagent": "0.3.x",
+    "ws": "0.4.x",
     "mocha" : "*",
     "chai": "*"
   }
