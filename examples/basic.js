@@ -1,10 +1,9 @@
 var http = require('http')
   , carbon = require('..');
 
-var server = http.createServer().listen(8000)
-  , balancer = new carbon.Stack(server);
+var proxy = carbon.listen(8000);
 
-balancer.use(function (req, res, next) {
+proxy.use(function (req, res, next) {
   next(9000);
 });
 
