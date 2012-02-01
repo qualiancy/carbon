@@ -1,4 +1,22 @@
 
+0.0.3 / 2012-02-01 
+==================
+
+  * stats middleware + tests
+  * proper event emitting for proxy start and proxy end on `req/res`
+  * added stats middleware
+  * addendum to renaming .. Stack now is Proxy
+  * added hakaru
+  * [refactor] renaming of internals
+  * apply context to stack execution
+  * proxy table and example
+  * middleware loader
+  * proxytable example
+  * added starting middleware skeltons
+  * commenting the stack
+  * bit of code cleanup
+  * testing
+
 0.0.2 / 2012-01-27 
 ==================
 
