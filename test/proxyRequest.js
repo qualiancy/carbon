@@ -37,7 +37,7 @@ describe('Carbon#ProxyRequest', function () {
       h1.listen(6786, function () {
         h2.listen(6785, done);
       });
-    })
+    });
 
     after(function (done) {
       var c = 1;
