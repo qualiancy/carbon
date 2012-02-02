@@ -5,6 +5,12 @@ var http = require('http')
 
 var carbon = require('..')
 
+function after(n, fn) {
+  return function () {
+    --n || fn.apply(null, arguments);
+  }
+}
+
 describe('Carbon#ProxyRequest', function () {
 
   it('should be an event listener', function (done) {
@@ -34,14 +40,13 @@ describe('Carbon#ProxyRequest', function () {
       , h2 = http.createServer(h2Req);
 
     before(function (done) {
-      h1.listen(6786, function () {
-        h2.listen(6785, done);
-      });
+      var next = after(2, done);
+      h1.listen(6786, next);
+      h2.listen(6785, next);
     });
 
     after(function (done) {
-      var c = 1;
-      function a () { --c || done() }
+      var a = after(2, done);
       h1.on('close', a);
       h2.on('close', a);
       h1.close();
@@ -58,7 +63,6 @@ describe('Carbon#ProxyRequest', function () {
           done();
         });
     });
-
   });
 
 });

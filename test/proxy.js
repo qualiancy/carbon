@@ -15,17 +15,15 @@ function url(p) {
 }
 
 function after(n, fn) {
-  var c = 0;
   return function () {
-    c++;
-    if (c==n) fn.apply(null, arguments);
+    --n || fn.apply(null, arguments);
   }
 }
 
 describe('Carbon#Proxy', function () {
 
   it('should be an event emitter', function (done) {
-    var h = http.createServer().listen(6789)
+    var h = http.createServer()
       , s = new carbon.Proxy(h);
     s.on('test event', function (opts) {
       opts.should.eql({ hello: 'universe' });

@@ -3,6 +3,12 @@ var should = require('chai').should()
   , request = require('superagent')
   , carbon = require('..');
 
+function after(n, fn) {
+  return function () {
+    --n || fn.apply(null, arguments);
+  }
+}
+
 describe('Middleware#stats', function () {
   var stats = carbon.stats({
     store: new carbon.stats.MemoryStore()
@@ -26,9 +32,17 @@ describe('Middleware#stats', function () {
   });
 
   before(function (done) {
-    app.listen(4169, function() {
-      serv.listen(4168, done);
-    });
+    var next = after(2, done);
+    app.listen(4169, next);
+    serv.listen(4168, next);
+  });
+
+  after(function (done) {
+    var next = after(2, done);
+    app.on('close', next);
+    serv.on('close', next);
+    app.close();
+    serv.close();
   });
 
   it('should mark on a request', function (done) {
