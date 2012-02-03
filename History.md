@@ -1,4 +1,33 @@
 
+0.0.4 / 2012-02-03 
+==================
+
+  * no downtime restarts!
+  * readme update
+  * all commented up
+  * proxy table cli
+  * proxyTable better aware of ports
+  * cli for balancer checkpoint
+  * added is path absolute utility
+  * cli checkpoint
+  * adding in tea for cli output
+  * balancer checkpoint
+  * update debug
+  * balancer middleware checkpoint
+  * update to spawn message debug
+  * balancer worker
+  * balancer example
+  * balancer spawn
+  * better tests cleanups
+  * added port finder utility
+  * starting balancer middleware
+  * tons of commenting
+  * stats middleware debuggable
+  * added cache placeholder
+  * proxy table debuggable
+  * added debug module
+  * basic example works again
+
 0.0.3 / 2012-02-01 
 ==================
 
