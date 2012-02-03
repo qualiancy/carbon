@@ -1,4 +1,10 @@
 
+0.0.5 / 2012-02-03 
+==================
+
+  * quick fix to port finder to prevent super race conditions
+  * balancer supports wildcard
+
 0.0.4 / 2012-02-03 
 ==================
 
