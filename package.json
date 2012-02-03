@@ -21,7 +21,7 @@
     "drip": "0.2.x",
     "optimist": "0.3.x",
     "hakaru": "0.1.x",
-    "debug": "0.3.x"
+    "debug": "0.5.x"
   },
   "devDependencies": {
     "superagent": "0.3.x",
