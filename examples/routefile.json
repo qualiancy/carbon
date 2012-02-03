@@ -1,10 +1,10 @@
 [
   {
-    "hostname": "qualiancy.com",
+    "hostname": "proxyone.com",
     "port": 8000
   },
   {
-    "hostname": "alogicalparadox.com",
+    "hostname": "proxytwo.com",
     "port": 1227
   }
 ]
