@@ -19,6 +19,7 @@
   },
   "dependencies": {
     "drip": "0.2.x",
+    "tea": "latest",
     "optimist": "0.3.x",
     "hakaru": "0.1.x",
     "debug": "0.5.x"
