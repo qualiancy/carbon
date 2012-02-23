@@ -33,7 +33,7 @@ describe('Carbon#ProxyRequest', function () {
 
     var h2Req = function (req, res) {
       p = new carbon.ProxyRequest(req, res);
-      p.proxy({ host: 'localhost', 'port': 6786 });
+      p.proxyHTTP({ host: 'localhost', 'port': 6786 });
     }
 
     var h1 = http.createServer(h1Req)
