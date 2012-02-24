@@ -1,6 +1,11 @@
-var should = require('chai').should()
+var chai = require('chai')
+  , chaihttp = require('chai-http')
+  , should = chai.should()
   , request = require('superagent')
-  , http = require('http');
+  , http = require('http')
+  , WS = require('ws');
+
+chai.use(chaihttp);
 
 var carbon = require('..')
   , defaults = {
@@ -120,6 +125,55 @@ describe('Carbon#Proxy', function () {
           res.text.should.equal('Universe says Hello');
           done();
         });
+    });
+  });
+
+  describe('websockets', function () {
+    var h = http.createServer()
+      , proxy = carbon.attach(h)
+      , w = http.createServer()
+      , wss = new WS.Server({ server: w });
+
+    proxy.ws.use(function (req, sock, next) {
+      next(8989);
+    });
+
+    wss.on('connection', function (ws) {
+      ws.on('message', function (m) {
+        switch (m) {
+          case 'ping':
+            ws.send('pong');
+            break;
+        }
+      });
+    });
+
+    before(function (done) {
+      var next = after(2, done);
+      h.listen(8988, next);
+      w.listen(8989, next);
+    });
+
+    after(function (done) {
+      var next = after(2, done);
+      h.on('close', next);
+      w.on('close', next);
+      h.close();
+      wss.close();
+      w.close();
+    });
+
+    it('should work', function (done) {
+      var wsclient = new WS('ws://localhost:8988');
+      wsclient.on('open', function () {
+        wsclient.send('ping');
+      });
+
+      wsclient.on('message', function (m) {
+        m.should.equal('pong');
+        wsclient.close();
+        done();
+      });
     });
   });
 });
