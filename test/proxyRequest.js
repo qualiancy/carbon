@@ -1,6 +1,11 @@
-var should = require('chai').should();
+var chai = require('chai')
+  , chaihttp = require('chai-http')
+  , should = chai.should();
+
+chai.use(chaihttp);
 
 var http = require('http')
+  , ws = require('ws')
   , request = require('superagent');
 
 var carbon = require('..')
@@ -64,5 +69,52 @@ describe('Carbon#ProxyRequest', function () {
         });
     });
   });
+
+  describe('websocket routing', function () {
+    var p
+      , serv = http.createServer();
+
+    var wsServ = new ws.Server({ server: serv });
+    var proxServ = http.createServer();
+
+    proxServ.on('upgrade', function (req, sock, head) {
+      p = new carbon.ProxyRequest(req, sock);
+      p.proxyWS({ host: 'localhost', port: 6787 , head: head });
+    });
+
+    before(function (done) {
+      var next = after(2, done);
+      serv.listen(6787, next);
+      proxServ.listen(6788, next);
+    });
+
+    after(function (done) {
+      var next = after(2, done);
+      serv.on('close', next);
+      proxServ.on('close', next);
+      serv.close();
+      proxServ.close();
+    });
+
+    it('should allow for websocket request to proxy', function (done) {
+      wsServ.on('connection', function (ws) {
+        ws.on('message', function (txt) {
+          txt.should.equal('ping');
+          ws.send('pong');
+        });
+      });
+
+      var wsclient = new ws('ws://localhost:6788');
+      wsclient.on('open', function () {
+        wsclient.send('ping');
+      });
+      wsclient.on('message', function (txt) {
+        txt.should.equal('pong');
+        wsclient.close();
+        done();
+      });
+    });
+  });
+
 
 });
