@@ -1,11 +1,11 @@
 {
-  "author": "Jake Luer <jake@alogicalparadox.com>",
+  "author": "Jake Luer <jake@qualiancy.com>",
   "name": "carbon",
   "description": "Little proxy.",
   "version": "0.0.5",
   "repository": {
     "type": "git",
-    "url": "git://github.com/logicalparadox/carbon.git"
+    "url": "git://github.com/qualiancy/carbon.git"
   },
   "main": "./index",
   "bin": {
