@@ -1,4 +1,19 @@
 
+0.0.6 / 2012-02-24 
+==================
+
+  * added test coverage support
+  * package update
+  * Merge branch 'feature/ws'
+  * tests for proxy using websockets
+  * handle upgrade fixes
+  * refactored proxy `use` to support web sockets and errors
+  * http upgrade handler for ws
+  * more default errors
+  * proxyRequest has basic ws support!
+  * clearn proxyrequest
+  * separating http from websocket
+
 0.0.5 / 2012-02-03 
 ==================
 
