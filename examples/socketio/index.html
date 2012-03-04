@@ -1,0 +1,17 @@
+<html>
+  <head>
+    <title>Carbon : Socket.io</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+      var socket = io.connect('http://localhost:4500');
+      socket.on('ping', function () {
+        console.log('ping');
+        socket.emit('pong');
+      });
+    </script>
+  </head>
+  <body>
+    <h1>Hello Universe</h1>
+  </body>
+</html>
