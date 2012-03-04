@@ -1,4 +1,18 @@
 
+0.0.8 / 2012-03-03 
+==================
+
+  * [bug] overwriting Worker#spawn method. #2
+  * [test] change server port to prevent collision
+  * [tests] multiple balancer. Closes #2
+  * [balancer-worker] support restarting
+  * [balancer-master] refactor spawnWorker for smarter starting
+  * [balancer-spawn] should exit on error
+  * [examples] added 2nd balancer
+  * [balancer master] #getNextWorker is async to give process time to start up
+  * [balancer] copy all env variables to forked process. Closes #1
+  * balancer test + fixtures
+
 0.0.7 / 2012-03-03 
 ==================
 

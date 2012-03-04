@@ -2,7 +2,7 @@
   "author": "Jake Luer <jake@qualiancy.com>",
   "name": "carbon",
   "description": "Little proxy.",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "repository": {
     "type": "git",
     "url": "git://github.com/qualiancy/carbon.git"
