@@ -12,7 +12,7 @@ describe('main exports', function () {
   });
 
   it('should create an http server to #listen on', function (done) {
-    var proxy = carbon.listen(1234, { nolog: true }, function () {
+    var proxy = carbon.listen(4100, { nolog: true }, function () {
       proxy.server.should.be.instanceof(http.Server);
       proxy.server.on('close', done);
       proxy.server.close();
