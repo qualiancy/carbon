@@ -27,6 +27,7 @@
   "devDependencies": {
     "superagent": "0.3.x",
     "ws": "0.4.x",
+    "socket.io": "0.9.x",
     "mocha" : "*",
     "chai": "*"
   }
