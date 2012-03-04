@@ -22,6 +22,11 @@ describe('Middleware#balancer', function () {
     , { host: 'localhost' }
   ));
 
+  proxy.use(carbon.balancer(
+      join(__dirname, 'fixtures', 'balancer2.js')
+    , { host: '127.0.0.1' }
+  ));
+
   before(function (done) {
     serv.listen(4170, done);
   });
@@ -39,6 +44,24 @@ describe('Middleware#balancer', function () {
       .end(function (res) {
         res.text.should.equal('foobar');
         done();
+      });
+  });
+
+  it('should allow for multiple balancers', function (done) {
+    var next = after(2, done);
+
+    request
+      .get('localhost:4170/inst')
+      .end(function (res) {
+        res.text.should.equal('1');
+        next();
+      });
+
+    request
+      .get('127.0.0.1:4170/inst')
+      .end(function (res) {
+        res.text.should.equal('2');
+        next();
       });
   });
 });

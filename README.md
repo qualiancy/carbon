@@ -2,6 +2,10 @@
 
 > Middleware based proxy for table or cluster based routing.
 
+## Features
+
+- Support for aggressive balancing with no-downtime restarts.
+
 ## Installation
 
     $ npm install carbon
