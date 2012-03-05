@@ -1,4 +1,13 @@
 
+0.0.9 / 2012-03-05 
+==================
+
+  * socketio integration tests
+  * [tests] empty socket.io tests
+  * [examples] socket.io
+  * [proxyrequest] added socket.io parsing
+  * [exampes/test] added socket.io dep
+
 0.0.8 / 2012-03-03 
 ==================
 
