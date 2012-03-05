@@ -16,6 +16,9 @@ describe('Socket.io Integration', function () {
     , proxy = carbon.attach(h)
     , io = sio.listen(wh);
 
+  //io.set('log level', -1);
+  io.set('transports', ['websocket']);
+
   proxy.ws.use(function (req, sock, next) {
     console.log('proxy ws req');
     next(6542);
@@ -23,9 +26,10 @@ describe('Socket.io Integration', function () {
 
   io.on('connection', function (socket) {
     console.log('connect');
-    socket.on('test event', function (data) {
+    socket.on('message', function (data) {
       console.log('event');
-      socket.emit('test reply', { hello: 'universe' });
+      console.log(data);
+      socket.send(JSON.stringify({ hello: 'universe' }));
     });
   });
 
@@ -44,17 +48,14 @@ describe('Socket.io Integration', function () {
   });
 
   //it('should work', function (done) {
-    //var ioclient = new ws('ws://localhost:6543/socket.io/websocket/');
+    //var ioclient = new ws('ws://localhost:6543/socket.io/websocket/websocket/');
     //ioclient.on('open', function () {
       //console.log('client connect');
-      //ioclient.emit('test event');
+      //ioclient.send('test event');
     //});
 
     //ioclient.on('message', function (data) {
-      //console.log('client reply');
-      //data.should.eql({ hello: 'universe' });
-      //ioclient.disconect();
-      //done();
+      //console.log(data);
     //});
   //});
 });
