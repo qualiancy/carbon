@@ -1,4 +1,4 @@
-var sould = require('chai').should()
+var should = require('chai').should()
   , http = require('http')
   , join = require('path').join
   , request = require('superagent')
