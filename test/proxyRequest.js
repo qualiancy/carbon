@@ -31,9 +31,29 @@ describe('Carbon#ProxyRequest', function () {
     var p;
 
     var h1Req = function (req, res) {
-      res.writeHead(200, { 'content-type': 'text/plain' });
-      res.write('Hello Universe');
-      res.end();
+      if (req.method == 'GET') {
+        res.writeHead(200, { 'content-type': 'text/plain' });
+        res.write('Hello Universe');
+        res.end();
+      } else if (req.method == 'POST') {
+        // parse
+        var buf = '';
+        req.setEncoding('utf8');
+        req.on('data', function(chunk){ buf += chunk });
+        req.on('end', function(){
+          if ('{' != buf[0] && '[' != buf[0]) return next(utils.error(400));
+          try {
+            req.body = JSON.parse(buf);
+            res.writeHead(200, { 'content-type': 'application/json' });
+            res.write(JSON.stringify(req.body));
+            res.end();
+          } catch (err){
+            err.status = 400;
+            res.statusCode = 400;
+            res.end();
+          }
+        });
+      }
     }
 
     var h2Req = function (req, res) {
@@ -58,13 +78,24 @@ describe('Carbon#ProxyRequest', function () {
       h2.close();
     });
 
-    it('should allow for basic routing', function (done) {
+    it('should allow for basic routing GET', function (done) {
       request
         .get('localhost:6785/')
         .end(function (res) {
           res.should.have.status(200);
           res.should.have.header('content-type', 'text/plain');
           res.text.should.equal('Hello Universe');
+          done();
+        });
+    });
+
+    it('should allwo for basic routing POST', function (done) {
+      request
+        .post('localhost:6785/')
+        .send({ hello: 'universe' })
+        .end(function (res) {
+          res.should.have.status(200);
+          res.body.should.have.property('hello', 'universe');
           done();
         });
     });
