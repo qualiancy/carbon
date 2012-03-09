@@ -1,4 +1,17 @@
 
+0.0.10 / 2012-03-09 
+==================
+
+  * small tweaks to proxyRequest
+  * balancer throw error if missing configuration option
+  * proxyRequest x-forwarded-___ headers typo
+  * added proxyRequest test for 'POST' method
+  * npm ignore coverage items
+  * tests for proxytable
+  * proxyTable now roundRobin balances requests
+  * mistype in balancer test
+  * added dev sep for chai-http
+
 0.0.9 / 2012-03-05 
 ==================
 
