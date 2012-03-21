@@ -4,7 +4,7 @@
 
 ## Features
 
-- Node http server export balancing with file waiting and no-downtime restarts
+- Node http server export balancing with file watching and no-downtime restarts
 - ProxyTable routing and balancing
 - Websocket / [socket.io](https://github.com/LearnBoost/socket.io) compatibible
 - CLI helper for ProxyFile based routing
@@ -26,6 +26,8 @@
     $ npm install carbon
 
 ## Usage
+
+To get the basics, you can also check out the `examples` folder.
 
 ### Basic
 
