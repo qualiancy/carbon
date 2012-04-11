@@ -44,7 +44,7 @@ describe('Carbon#Proxy', function () {
 
   describe('http routing', function () {
     var h = http.createServer()
-      , proxy = carbon.attach(h, defaults.opts);
+      , proxy = carbon.listen(h, defaults.opts);
 
     var univ = http.createServer(function (req, res) {
       res.writeHead(200, { 'content-type': 'text/plain' });
@@ -130,7 +130,7 @@ describe('Carbon#Proxy', function () {
 
   describe('websockets', function () {
     var h = http.createServer()
-      , proxy = carbon.attach(h)
+      , proxy = carbon.listen(h)
       , w = http.createServer()
       , wss = new WS.Server({ server: w });
 

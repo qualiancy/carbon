@@ -23,7 +23,7 @@ describe('Middleware#stats', function () {
   });
 
   var serv = http.createServer()
-    , proxy = carbon.attach(serv);
+    , proxy = carbon.listen(serv);
 
   proxy.use(stats.middleware());
   proxy.use(function (req, res, next) {

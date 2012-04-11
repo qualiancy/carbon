@@ -21,7 +21,7 @@ describe('main exports', function () {
 
   it('should #attach an exist http server', function (done) {
     var server = http.createServer()
-      , proxy = carbon.attach(server, { nolog: true });
+      , proxy = carbon.listen(server, { nolog: true });
     proxy.server.should.eql(server);
     done();
   });

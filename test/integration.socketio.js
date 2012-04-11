@@ -13,7 +13,7 @@ function after(n, fn) {
 describe('Socket.io Integration', function () {
   var h = http.createServer()
     , wh = http.createServer()
-    , proxy = carbon.attach(h)
+    , proxy = carbon.listen(h)
     , io = sio.listen(wh);
 
   //io.set('log level', -1);

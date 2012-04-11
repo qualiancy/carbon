@@ -13,7 +13,7 @@ function after(n, fn) {
 describe('Middleware#balancer', function () {
 
   var serv = http.createServer()
-    , proxy = carbon.attach(serv);
+    , proxy = carbon.listen(serv);
 
   process.env.BALANCERTEST = 'foobar';
 

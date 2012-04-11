@@ -14,7 +14,7 @@ describe('Middleware#proxyTable', function () {
 
   describe('simple table', function () {
     var serv = http.createServer()
-      , proxy = carbon.attach(serv);
+      , proxy = carbon.listen(serv);
 
     var app = http.createServer(function (req, res) {
       res.end('app 4568');
@@ -60,7 +60,7 @@ describe('Middleware#proxyTable', function () {
 
   describe('balanced table', function () {
     var serv = http.createServer()
-      , proxy = carbon.attach(serv);
+      , proxy = carbon.listen(serv);
 
     var app = http.createServer(function (req, res) {
       res.end('app 4456');
