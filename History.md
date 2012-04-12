@@ -1,4 +1,21 @@
 
+0.1.0 / 2012-04-11 
+==================
+
+  * [refactor] balancer worker handlers are private
+  * [refactor] main export listen now supports constructed server. removed #attach
+  * [feature] cli help formatting
+  * [attr] comments and code attribution for proxyRequest
+  * [feature] added NODE_ENV based Proxy#configure
+  * [refactor] Proxy#ws / Proxy#error are now either chainable or direct functions.
+  * Code commenting.
+  * [refactor] privatize api for a majority of Proxy methods
+  * read me update
+  * update email in license headers
+  * use cli global and not exports. also, cli.register for creating help entries
+  * moar readme
+  * readme updates
+
 0.0.10 / 2012-03-09 
 ==================
 

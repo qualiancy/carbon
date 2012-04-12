@@ -2,7 +2,7 @@
   "author": "Jake Luer <jake@qualiancy.com>",
   "name": "carbon",
   "description": "Little proxy.",
-  "version": "0.0.10",
+  "version": "0.1.0",
   "repository": {
     "type": "git",
     "url": "git://github.com/qualiancy/carbon.git"
@@ -19,13 +19,13 @@
   },
   "dependencies": {
     "drip": "0.2.x",
-    "tea": "latest",
+    "tea": "0.0.x",
     "optimist": "0.3.x",
     "hakaru": "0.1.x",
-    "debug": "0.5.x"
+    "debug": "0.6.x"
   },
   "devDependencies": {
-    "superagent": "0.3.x",
+    "superagent": "0.4.x",
     "ws": "0.4.x",
     "socket.io": "0.9.x",
     "mocha" : "*",
