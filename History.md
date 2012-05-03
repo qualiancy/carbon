@@ -1,4 +1,12 @@
 
+0.2.0 / 2012-05-03 
+==================
+
+  * Merge branch 'feature/expose-balancer'
+  * update tests for balancer middleware
+  * balancer middle returns master instance. use balancer.middleware as `use`statement
+  * mocha opts for watch testing
+
 0.1.0 / 2012-04-11 
 ==================
 
