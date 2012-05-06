@@ -1,4 +1,12 @@
 
+0.2.2 / 2012-05-06 
+==================
+
+  * logging middleware example
+  * logging middleware
+  * adding quantum logger
+  * remove tea dependancy
+
 0.2.1 / 2012-05-03 
 ==================
 
