@@ -1,9 +1,5 @@
 #! /usr/bin/env node
 
-var args = require('optimist').argv
-  , command = args._.slice(0)
-  , cli = require('../lib/carbon/cli');
-
-args.cwd = process.cwd();
-
-cli(command, args);
+var program = require('../lib/carbon/cli')
+  .cwd(process.cwd())
+  .parse(process.argv);
