@@ -12,14 +12,22 @@
 
 ## Middleware
 
-- **Balancer**: Given a `module.export` node compatible webserver, start `n` processes and balance traffic. (_Psuedo-clustering_)
+Carbon support many types of middlware. The bundled middlware is specifically for 
+different types of balancing techniques. You can find other middleware projects
+by following the links below.
+
+#### Bundled Middleware
+
+- **Balancer**: Given a `module.export` node compatible webserver, start `n` 
+processes and balance traffic. (_Psuedo-clustering_)
 - **ProxyTable**: Route requests for host to port, or balance between many ports
-- **Stats**: Create a stats store and measure count of hits/misses and response time. Based on [hakaru](http://github.com/logicalparadox/hakaru).
 
-### Coming Soon
+#### Qualiancy Middleware
 
-- **Logging**
-- **Cache**
+- **Logging** ([qualiancy/carbon-logger](https://github.com/qualiancy/carbon-logger)): 
+Multi-transport logging middleware suitable for debugging or production use.
+- **Stats** ([qualiancy/carbon-stats](https://github.com/qualiancy/carbon-stats)): 
+Create a stats store and measure count of hits/misses and response time. 
 
 ## Installation
 
@@ -31,7 +39,8 @@ To get the basics, you can also check out the `examples` folder.
 
 ### Basic
 
-Carbon allow you to build your own routing logic. In this really basic example, all traffic to port `8080` will be routed to port `8081`.
+Carbon allow you to build your own routing logic. In this really basic example, 
+all traffic to port `8080` will be routed to port `8081`.
 
 ```js
 var proxy = require('carbon').listen(8080);
@@ -78,11 +87,21 @@ instruct the webserver to listen on that port.
 To use, ensure the the server is the primary `module.export` for a given file, and pass that file to the balancer middleware.
 
 ```js
-var proxy = require('carbon').listen(8080);
-proxy.use(carbon.balancer(
+var carbon = require('carbon')
+  , proxy = carbon.listen(8080);
+
+var balancer = carbon.balancer(
     path.join(__dirname, 'app.js')
-  , { host: 'localhost' }
-));
+  , { host: 'localhost' // required
+    , watch: true       // optional (defaults to true)
+    , maxWorkers: 4     // optional (defaults to hardware cpu count)
+});
+
+// for http requests
+proxy.use(balancer.middleware);
+
+// for websocket requests
+proxy.ws(balancer.middleware);
 ```
 
 In this example, any traffic that goes to `localhost:8080` will be balanced between several instances of `app.js`. Balancer defaults to 
@@ -111,7 +130,7 @@ if you are interested in being regular contributor.
 
 #### Contibutors 
 
-* Jake Luer ([Github: @logicalparadox](http://github.com/logicalparadox)) ([Twitter: @jakeluer](http://twitter.com/jakeluer)) ([Website](http://alogicalparadox.com))
+* Jake Luer ([@logicalparadox](http://github.com/logicalparadox))
 
 ## Inspiration
 
@@ -123,24 +142,24 @@ Carbon was inspired by these modules:
 
 ## License
 
-    (The MIT License)
+(The MIT License)
 
-    Copyright (c) 2012 Jake Luer <jake@qualiancy.com>
+Copyright (c) 2012 Jake Luer <jake@qualiancy.com>
 
-    Permission is hereby granted, free of charge, to any person obtaining a copy
-    of this software and associated documentation files (the "Software"), to deal
-    in the Software without restriction, including without limitation the rights
-    to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-    copies of the Software, and to permit persons to whom the Software is
-    furnished to do so, subject to the following conditions:
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
 
-    The above copyright notice and this permission notice shall be included in
-    all copies or substantial portions of the Software.
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
 
-    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-    AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-    THE SOFTWARE.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
