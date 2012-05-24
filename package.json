@@ -19,10 +19,9 @@
   },
   "dependencies": {
     "drip": "0.2.x",
-    "optimist": "0.3.x",
+    "electron": "0.1.x",
     "hakaru": "0.1.x",
-    "debug": "0.7.x",
-    "quantum": "0.1.x"
+    "debug": "*",
   },
   "devDependencies": {
     "superagent": "0.4.x",
