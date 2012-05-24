@@ -1,4 +1,13 @@
 
+0.3.0 / 2012-05-24 
+==================
+
+  * read me updates for external middlware
+  * CLI refactored to use `electron`
+  * remove logger example
+  * clean up stats middleware
+  * moved logging middleware to separate lib
+
 0.2.2 / 2012-05-06 
 ==================
 
