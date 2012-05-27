@@ -4,7 +4,7 @@
   "description": "Middleware based proxy for cluster or table based routing.",
   "keywords": [ "proxy", "cluster", "balancer", "balance" ],
   "license": "MIT",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "repository": {
     "type": "git",
     "url": "git://github.com/qualiancy/carbon.git"

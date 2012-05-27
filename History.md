@@ -1,4 +1,13 @@
 
+0.3.1 / 2012-05-27 
+==================
+
+  * secure server example
+  * tests for secure requests
+  * proxy runner can pass secure option
+  * proxyRequest supports requests to secure servers
+  * adding https certs
+
 0.3.0 / 2012-05-24 
 ==================
 
