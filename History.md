@@ -1,4 +1,14 @@
 
+0.3.2 / 2012-06-07 
+==================
+
+  * name function callback for proxyTable middleware
+  * balancer middleware tests user `handle` function
+  * balancer middleware has `handle` as middleware function
+  * Proxy#use looks for `fn. handle` as middleware use function
+  * Merge branch 'bug/5'
+  * middleware handled non-existant `req.host`. Close #5
+
 0.3.1 / 2012-05-27 
 ==================
 
