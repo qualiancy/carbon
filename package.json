@@ -25,6 +25,7 @@
   "dependencies": {
     "drip": "0.3.x",
     "electron": "0.2.x",
+    "harbor": "0.1.x",
     "debug": "*"
   },
   "devDependencies": {
