@@ -23,12 +23,12 @@
     "node": ">= 0.6.x"
   },
   "dependencies": {
-    "drip": "0.2.x",
-    "electron": "0.1.x",
+    "drip": "0.3.x",
+    "electron": "0.2.x",
     "debug": "*"
   },
   "devDependencies": {
-    "superagent": "0.4.x",
+    "superagent": "0.7.x",
     "ws": "0.4.x",
     "socket.io": "0.9.x",
     "mocha" : "*",
