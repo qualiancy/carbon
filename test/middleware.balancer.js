@@ -17,15 +17,18 @@ describe('Middleware#balancer', function () {
 
   process.env.BALANCERTEST = 'foobar';
 
-  proxy.use(carbon.balancer(
-      join(__dirname, 'fixtures', 'balancer.js')
-    , { host: 'localhost' }
-  ));
+  var bal1 = carbon.balancer(
+      'localhost'
+    , join(__dirname, 'fixtures', 'balancer.js')
+  );
 
-  proxy.use(carbon.balancer(
-      join(__dirname, 'fixtures', 'balancer2.js')
-    , { host: '127.0.0.1' }
-  ));
+  var bal2 = carbon.balancer(
+      '127.0.0.1'
+    , join(__dirname, 'fixtures', 'balancer2.js')
+  );
+
+  proxy.use(bal1);
+  proxy.use(bal2);
 
   before(function (done) {
     serv.listen(4170, done);
