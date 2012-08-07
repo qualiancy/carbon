@@ -23,6 +23,7 @@
     "node": ">= 0.6.x"
   },
   "dependencies": {
+    "cohesion": "0.1.x",
     "drip": "0.3.x",
     "electron": "0.2.x",
     "harbor": "0.1.x",
