@@ -39,8 +39,6 @@ describe('Middleware#balancer', function () {
     serv.close();
   });
 
-  it('should round robin the requests');
-
   it('should pass env variable to children', function (done) {
     request
       .get('localhost:4170/env')
