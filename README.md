@@ -1,3 +1,4 @@
+[![build status](https://secure.travis-ci.org/qualiancy/carbon.png)](http://travis-ci.org/qualiancy/carbon)
 # Carbon
 
 > Middleware based proxy for table or cluster based routing.
