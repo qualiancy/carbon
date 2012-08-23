@@ -1,4 +1,31 @@
 
+0.4.0 / 2012-08-23 
+==================
+
+  * node 0.8.x only
+  * refactor auto travis commit
+  * Merge branch 'refactor/04x'
+  * watch is no longer default for balancer, update examples
+  * add back file watching ability to balancer middleware
+  * add in fsagent for balancer file watch
+  * update suparagent to 0.8.x
+  * Merge branch 'master' into refactor/04x
+  * Merge pull request #10 from travis4all/clean
+  * :gem: Travis CI image/link in readme :gem:
+  * :gem: Added travis.yml file :gem:
+  * clean up balancer tests
+  * update harbor
+  * balancer handler for port assignment race conditions
+  * update balancer example with new format
+  * balancer - ensure proper file is being used as server
+  * update balancer tests with new argument format
+  * remove tests for findPort utility
+  * start refactoring of balance middleware to use cohesion
+  * add cohesion as dependancy - begin refactor of balancer middleware
+  * using harbor instead of built in port finder utility
+  * clean up makefile
+  * update dependancies
+
 0.3.2 / 2012-06-07 
 ==================
 
