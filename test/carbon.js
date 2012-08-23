@@ -26,33 +26,4 @@ describe('main exports', function () {
     done();
   });
 
-  describe('utilities', function () {
-
-    describe('portfinder', function () {
-      var serv = http.createServer();
-      before(function (done) {
-        serv.listen(4200, done);
-      });
-
-      after(function (done) {
-        serv.on('close', done);
-        serv.close();
-      });
-
-      it('should be able to find a port', function (done) {
-        utils.findPort({ min: 4200, max: 4205 }, function (err, port) {
-          should.not.exist(err);
-          port.should.equal(4201);
-          done();
-        });
-      });
-
-      it('should return an error if all are taken', function (done) {
-        utils.findPort({ min: 4200, max: 4200 }, function (err, port) {
-          err.should.be.instanceof(Error);
-          done();
-        });
-      });
-    });
-  });
 });

@@ -17,6 +17,7 @@ describe('Middleware#proxyTable', function () {
       , proxy = carbon.listen(serv);
 
     var app = http.createServer(function (req, res) {
+      res.writeHeader(200, { 'content-type' : 'text/plain' });
       res.end('app 4568');
     });
 
@@ -63,10 +64,12 @@ describe('Middleware#proxyTable', function () {
       , proxy = carbon.listen(serv);
 
     var app = http.createServer(function (req, res) {
+      res.writeHeader(200, { 'content-type' : 'text/plain' });
       res.end('app 4456');
     });
 
     var app2 = http.createServer(function (req, res) {
+      res.writeHeader(200, { 'content-type' : 'text/plain' });
       res.end('app 4457');
     });
 
