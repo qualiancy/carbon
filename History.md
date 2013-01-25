@@ -1,4 +1,13 @@
 
+0.5.0 / 2013-01-25 
+==================
+
+  * cli: update dependencies
+  * middleware: update dependenceis
+  * proxy: update dependencies
+  * utils: clean up
+  * deps: update dependencies
+
 0.4.0 / 2012-08-23 
 ==================
 
