@@ -23,15 +23,15 @@
     "node": ">= 0.8.x"
   },
   "dependencies": {
-    "cohesion": "0.1.x",
-    "drip": "0.3.x",
-    "electron": "0.2.x",
+    "cohesion": "0.2.x",
+    "drip": "1.1.x",
+    "electron": "0.4.x",
     "fsagent": "0.3.x",
     "harbor": "0.2.x",
-    "debug": "*"
+    "sherlock": "*"
   },
   "devDependencies": {
-    "superagent": "0.8.x",
+    "superagent": "0.12.x",
     "ws": "0.4.x",
     "socket.io": "0.9.x",
     "mocha" : "*",
