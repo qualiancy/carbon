@@ -1,5 +1,0 @@
-#! /usr/bin/env node
-
-var program = require('../lib/carbon/cli')
-  .cwd(process.cwd())
-  .parse(process.argv);
