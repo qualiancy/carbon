@@ -8,10 +8,11 @@ var sthr = server('three[9092]').listen(9092);
 
 var balancer = app.balancers.create('http', 'universe', {
     port: 8080
+  , strategy: 'round robin'
   , virtualIPs: [ '192.168.1.118' ]
 });
 
-balancer.strategy('round robin');
+balancer.host('logicalarch');
 
 balancer.shards.create(9090, 'localhost').enable();
 balancer.shards.create(9091, 'localhost').enable();
