@@ -1,7 +1,4 @@
 var carbon = require('../..');
-var app = carbon();
-
-var opts = { host: '192.168.1.118', port: 8080, type: 'http' };
 
 function handle(req, res, next) {
   var start;
@@ -19,9 +16,12 @@ function handle(req, res, next) {
   next(null, { port: 8081 });
 }
 
-app.servers.findOrCreate(opts, function(err, server) {
+var server = carbon.createServer('http', { port: 8080 });
+
+server.listen(function(err) {
   if (err) throw err;
   server.use(handle);
+  console.log(server.state, server.address());
 });
 
 require('http')
