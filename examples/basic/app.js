@@ -16,12 +16,13 @@ function handle(req, res, next) {
   next(null, { port: 8081 });
 }
 
-var server = carbon.createServer('http', { port: 8080 });
-
-server.listen(function(err) {
+carbon.createServer('http', { port: 8080 }, function(err, server) {
   if (err) throw err;
-  server.use(handle);
-  console.log(server.state, server.address());
+  server.listen(function(err) {
+    if (err) throw err;
+    server.use(handle);
+    console.log(server.state, server.address());
+  });
 });
 
 require('http')
