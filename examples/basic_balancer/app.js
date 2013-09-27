@@ -1,10 +1,13 @@
 var carbon = require('../..');
-var app = carbon();
+var visor = carbon();
 
-var server = require('./server');
-var sone = server('one[9090]').listen(9090);
-var stwo = server('two[9091]').listen(9091);
-var sthr = server('three[9092]').listen(9092);
+var target = require('./server');
+
+var targets = {
+    9090: target('9090')
+  , 9091: target('9091')
+  , 9092: target('9092')
+};
 
 var opts = {
     port: 8080
@@ -12,17 +15,20 @@ var opts = {
   , ips: [ '192.168.1.118' ]
 };
 
-app.createBalancer('http', 'universe', opts, function(err, balancer) {
+visor.createBalancer('http', 'universe', opts, function(err, balancer) {
   if (err) {
-    console.log(err.errors);
-    throw err;
+    console.error('createBalancer failed:');
+    console.error(err.errors);
+    return process.exit(1);
   }
 
+  Object.keys(targets).forEach(function(port) {
+    var target = targets[port];
+    var shard = balancer.shards.create(port, 'localhost');
+    target.listen(port);
+    shard.enable();
+  });
 
-  console.log('balancer start:', balancer.get('name'), balancer.get('port'));
-  balancer.shards.create(9090, 'localhost').enable();
-  balancer.shards.create(9091, 'localhost').enable();
-  balancer.shards.create(9092, 'localhost').enable();
   balancer.start();
 
   /*
@@ -33,4 +39,32 @@ app.createBalancer('http', 'universe', opts, function(err, balancer) {
     }, 20 * 1000);
   }, 10000);
   */
+});
+
+visor.on('balancer:create', function (balancer) {
+  console.log('balancer created:', balancer.get('name'), balancer.get('port'));
+
+  balancer.on('started', function() {
+    console.log('balancer started:', balancer.get('name'), balancer.get('port'));
+  });
+
+  balancer.on('shard:create', function(shard) {
+    console.log('shard created:', shard.address());
+
+    shard.on('enabled', function() {
+      console.log('shard enabled:', shard.address());
+    });
+
+    shard.on('disabled', function() {
+      console.log('shard disabled:', shard.address());
+    });
+  });
+});
+
+visor.on('server:create', function(server) {
+  console.log('server created:', server.get('address'), server.get('port'));
+
+  server.on('listening', function(port, address) {
+    console.log('server listening:', address, port);
+  });
 });
