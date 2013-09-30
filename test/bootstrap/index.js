@@ -32,4 +32,22 @@ function req (name) {
  * Load unexposed modules for unit tests
  */
 
-global.__carbon = {};
+global.__carbon = {
+    Server: req('server/proto/_base')
+  , serverManager: req('server/index')
+  , Servers: req('servers')
+};
+
+var count = 0;
+
+global._uid = function(str) {
+  return (str || '') + (++count);
+};
+
+global.noop = function() {};
+
+global.anoop = function() {
+  var args = [].slice.call(arguments);
+  var cb = args[args.length - 1];
+  setImmediate(cb);
+};
