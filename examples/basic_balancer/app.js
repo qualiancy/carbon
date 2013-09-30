@@ -24,9 +24,15 @@ visor.createBalancer('http', 'universe', opts, function(err, balancer) {
 
   Object.keys(targets).forEach(function(port) {
     var target = targets[port];
-    var shard = balancer.shards.create(port, 'localhost');
-    target.listen(port);
-    shard.enable();
+    balancer.createShard({ address: 'localhost', port: parseFloat(port), condition: 'disabled' }, function(err) {
+      if (err) {
+        console.error('createShard failed:');
+        console.error(err.errors);
+        return process.exit(1);
+      }
+
+      target.listen(port);
+    });
   });
 
   balancer.start();
@@ -58,6 +64,8 @@ visor.on('balancer:create', function (balancer) {
     shard.on('disabled', function() {
       console.log('shard disabled:', shard.address());
     });
+
+    shard.enable();
   });
 });
 
