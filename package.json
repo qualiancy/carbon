@@ -22,6 +22,7 @@
     }
   , "dependencies": {
         "breeze-async": "0.1.x"
+      , "breeze-asyncify": "0.1.x"
       , "contraption": "0.2.x"
       , "crystal": "0.1.x"
       , "carbon-proxy": "*"
