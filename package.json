@@ -2,9 +2,14 @@
   "author": "Jake Luer <jake@qualiancy.com>",
   "name": "carbon",
   "description": "Middleware based proxy for cluster or table based routing.",
-  "keywords": [ "proxy", "cluster", "balancer", "balance" ],
+  "keywords": [
+    "proxy",
+    "cluster",
+    "balancer",
+    "balance"
+  ],
   "license": "MIT",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "repository": {
     "type": "git",
     "url": "git://github.com/qualiancy/carbon.git"
@@ -25,17 +30,17 @@
   "dependencies": {
     "cohesion": "0.2.x",
     "drip": "1.1.x",
-    "electron": "0.4.x",
+    "electron": "^7.3.3",
     "fsagent": "0.3.x",
     "harbor": "0.2.x",
     "sherlock": "*"
   },
   "devDependencies": {
-    "superagent": "0.12.x",
-    "ws": "0.4.x",
-    "socket.io": "0.9.x",
-    "mocha" : "*",
     "chai": "*",
-    "chai-http": "*"
+    "chai-http": "*",
+    "mocha": "*",
+    "socket.io": "^4.0.1",
+    "superagent": "^6.1.0",
+    "ws": "^1.1.5"
   }
 }
